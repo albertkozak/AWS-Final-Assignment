@@ -5,9 +5,9 @@ import { Auth } from "aws-amplify";
 
 class ChangePassword extends Component {
   state = {
+    email: "",
     oldpassword: "",
-    password:"",
-    confirmpassword:"",
+    confirmpassword: "",
     errors: {
       blankfield: false,
       matchedpassword: false,
@@ -19,7 +19,6 @@ class ChangePassword extends Component {
     this.setState({
       errors: {
         blankfield: false,
-        matchedpassword: false,
         cognito: null
       }
     });
@@ -37,24 +36,26 @@ class ChangePassword extends Component {
         errors: { ...this.state.errors, ...error }
       });
     } else {
+      //Integrate Cognito here on valid form submission
+      try {
+        await Auth.changePassword(
+          this.props.auth.user,
+          this.state.oldpassword,
+          this.state.password
+        );
+        this.props.history.push("/changepasswordconfirmation");
+      } catch (error) {
+        let err = null;
+        !error.message ? (err = { message: error }) : (err = error);
 
-    
-    //Integrate Cognito here on valid form submission
-    try {
-      await Auth.forgotPasswordSubmit(this.state.user, this.state.oldpassword, this.state.password);
-      this.props.history.push("/changepasswordconfirmation");
-    } catch (error) {
-      let err = null;
-      !error.message ? (err = { message: error }) : (err = error);
-
-      this.setState({
-        errors: {
-          ...this.state.errors,
-          cognito: err
-        }
-      });
+        this.setState({
+          errors: {
+            ...this.state.errors,
+            cognito: err
+          }
+        });
+      }
     }
-}
   };
 
   onInputChange = event => {
@@ -78,8 +79,8 @@ class ChangePassword extends Component {
                   className="input"
                   type="password"
                   id="oldpassword"
-                  placeholder="Enter your old password"
-                  value={this.state.email}
+                  placeholder="Enter your current password"
+                  value={this.state.oldpassword}
                   onChange={this.onInputChange}
                 />
                 <span className="icon is-small is-left">
@@ -89,8 +90,8 @@ class ChangePassword extends Component {
             </div>
             <div className="field">
               <p className="control has-icons-left">
-                <input 
-                  className="input" 
+                <input
+                  className="input"
                   type="password"
                   id="password"
                   placeholder="Password"
@@ -104,8 +105,8 @@ class ChangePassword extends Component {
             </div>
             <div className="field">
               <p className="control has-icons-left">
-                <input 
-                  className="input" 
+                <input
+                  className="input"
                   type="password"
                   id="confirmpassword"
                   placeholder="Confirm password"
@@ -130,4 +131,3 @@ class ChangePassword extends Component {
 }
 
 export default ChangePassword;
-

@@ -10,11 +10,10 @@ export default class Navbar extends Component {
       Auth.signOut();
       this.props.auth.authenticateUser(false);
       this.props.auth.setAuthUser(null);
-    } catch(error){
+    } catch (error) {
       console.log(error.message);
     }
-  }
-
+  };
 
   render() {
     return (
@@ -33,19 +32,26 @@ export default class Navbar extends Component {
               <div className="auth-buttons">
                 {!this.props.auth.isAuth && (
                   <div>
-                <a href="/register" className="button is-primary">
-                  <strong>Register</strong>
-                </a>
-                <a href="/login" className="button is-light">
-                  Log in
-                </a>
-                </div>
+                    <a href="/register" className="button is-primary">
+                      <strong>Register</strong>
+                    </a>
+                    <a href="/login" className="button is-light">
+                      Log in
+                    </a>
+                  </div>
                 )}
                 {this.props.auth.isAuth && (
                   <div>
-                    <a href="/changepassword" onClick={this.logOutHandler} className="button is-light">Change Password</a>
-                    <a href="/" onClick={this.logOutHandler} className="button is-light">Log out</a>
-                  
+                    <a href="/changepassword" className="button is-light">
+                      Change Password
+                    </a>
+                    <a
+                      href="/"
+                      onClick={this.logOutHandler}
+                      className="button is-light"
+                    >
+                      Log out
+                    </a>
                   </div>
                 )}
               </div>
@@ -56,5 +62,3 @@ export default class Navbar extends Component {
     );
   }
 }
-
-
