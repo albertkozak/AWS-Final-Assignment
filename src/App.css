@@ -30,13 +30,13 @@
 
 h1 {
   font-size: 4em;
-  font-family: "Wendy One";
+  font-family: "Wendy One", sans-serif;
   margin-top: 5rem;
   text-align: center;
 }
 
 h2 {
-  font-family: "Wendy One";
+  font-family: "Wendy One", sans-serif;
   font-size: 1.5rem;
 }
 
@@ -45,7 +45,7 @@ p {
 }
 
 body {
-  font-family: "Montserrat";
+  font-family: "Montserrat", sans-serif;
 }
 
 .glasses {
