@@ -7,31 +7,31 @@
 **Instructions:**
 * Read below for build instructions
 
-***Register Page:***
+***REGISTER***
 ![picture](images/1.png)
 
-***Login:***
+***LOGIN***
 ![picture](images/2.png)
 
-***Products:***
+***PRODUCTS***
 ![picture](images/3.png)
 
-***More Products:***
+***MORE PRODUCTS***
 ![picture](images/4.png)
 
-***Change Password:***
+***CHANGE PASSWORD***
 ![picture](images/5.png)
 
-***AWS Lambda Function:***
+***AWS LAMBDA FUNCTION***
 ![picture](images/6.png)
 
-***API Gateway:***
+***API GATEWAY***
 ![picture](images/7.png)
 
-***S3 Bucket***
+***S3 BUCKET***
 ![picture](images/8.png)
 
-***Bucket Details***
+***S3 BUCKET DETAILS***
 ![picture](images/9.png)
 
 
