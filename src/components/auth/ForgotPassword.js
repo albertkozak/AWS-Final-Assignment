@@ -33,22 +33,22 @@ class ForgotPassword extends Component {
         errors: { ...this.state.errors, ...error }
       });
     } else {
-    //Integrate Cognito here on valid form submission
-    try {
-      await Auth.forgotPassword(this.state.email);
-      this.props.history.push("/forgotpasswordsubmit");
-    } catch (error) {
-      let err = null;
-      !error.message ? (err = { message: error }) : (err = error);
+      //Integrate Cognito here on valid form submission
+      try {
+        await Auth.forgotPassword(this.state.email);
+        this.props.history.push("/forgotpasswordsubmit");
+      } catch (error) {
+        let err = null;
+        !error.message ? (err = { message: error }) : (err = error);
 
-      this.setState({
-        errors: {
-          ...this.state.errors,
-          cognito: err
-        }
-      });
+        this.setState({
+          errors: {
+            ...this.state.errors,
+            cognito: err
+          }
+        });
+      }
     }
-}
   };
 
   onInputChange = event => {
@@ -83,7 +83,7 @@ class ForgotPassword extends Component {
             </div>
             <div className="field">
               <p className="control">
-                <button className="button is-success">Reset Password</button>
+                <button className="button is-dark">Reset Password</button>
               </p>
             </div>
           </form>
@@ -94,4 +94,3 @@ class ForgotPassword extends Component {
 }
 
 export default ForgotPassword;
-

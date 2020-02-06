@@ -120,7 +120,7 @@ class ChangePassword extends Component {
             </div>
             <div className="field">
               <p className="control">
-                <button className="button is-success">Change Password</button>
+                <button className="button is-danger">Change Password</button>
               </p>
             </div>
           </form>

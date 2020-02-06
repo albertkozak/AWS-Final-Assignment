@@ -1,4 +1,9 @@
-.navbar, .navbar-end, .navbar-menu, .navbar-start {
+@import url("https://fonts.googleapis.com/css?family=Montserrat|Wendy+One&display=swap");
+
+.navbar,
+.navbar-end,
+.navbar-menu,
+.navbar-start {
   align-items: stretch !important;
   display: flex !important;
 }
@@ -24,5 +29,32 @@
 }
 
 h1 {
-  font-size: 2em;
+  font-size: 4em;
+  font-family: "Wendy One";
+  margin-top: 5rem;
+  text-align: center;
+}
+
+h2 {
+  font-family: "Wendy One";
+  font-size: 1.5rem;
+}
+
+p {
+  color: #a5adb3;
+}
+
+body {
+  font-family: "Montserrat";
+}
+
+.glasses {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 4rem 3rem;
+  justify-content: space-evenly;
+}
+
+.item {
+  text-align: center;
 }

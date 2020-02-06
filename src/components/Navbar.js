@@ -32,28 +32,28 @@ export default class Navbar extends Component {
               <div className="auth-buttons">
                 {!this.props.auth.isAuth && (
                   <div>
-                    <a href="/register" className="button is-primary">
+                    <a href="/register" className="button is-dark">
                       <strong>Register</strong>
                     </a>
-                    <a href="/login" className="button is-light">
-                      Log in
+                    <a href="/login" className="button is-danger">
+                      Login
                     </a>
                   </div>
                 )}
                 {this.props.auth.isAuth && (
                   <div>
-                    <a href="/products" className="button is-light">
+                    <a href="/products" className="button is-dark">
                       Products
                     </a>
-                    <a href="/changepassword" className="button is-light">
+                    <a href="/changepassword" className="button is-dark">
                       Change Password
                     </a>
                     <a
                       href="/"
                       onClick={this.logOutHandler}
-                      className="button is-light"
+                      className="button is-danger"
                     >
-                      Log out
+                      Logout
                     </a>
                   </div>
                 )}

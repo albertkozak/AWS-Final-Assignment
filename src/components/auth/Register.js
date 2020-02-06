@@ -1,12 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import FormErrors from "../FormErrors";
-import {Auth} from 'aws-amplify';
+import { Auth } from "aws-amplify";
 import Validate from "../util/Validation";
 
-
-class Register extends Component { 
+class Register extends Component {
   //state variables for form inputs and errors
-    state = {
+  state = {
     username: "",
     email: "",
     password: "",
@@ -16,7 +15,7 @@ class Register extends Component {
       matchedpassword: false,
       cognito: null
     }
-  }
+  };
 
   clearErrors = () => {
     this.setState({
@@ -26,7 +25,7 @@ class Register extends Component {
         cognito: null
       }
     });
-  }
+  };
 
   handleSubmit = async event => {
     //Prevent page reload
@@ -40,34 +39,33 @@ class Register extends Component {
         errors: { ...this.state.errors, ...error }
       });
     } else {
-    //Integrate Cognito here on valid form submission
-    const {username, email, password} = this.state;
+      //Integrate Cognito here on valid form submission
+      const { username, email, password } = this.state;
 
-    try {
-      const signUpResponse = await Auth.signUp({
-        username,
-        password,
-        attributes: {
-          email: email
-        }
-      });
-      console.log(signUpResponse);
-      //redirect to Welcome page if registration is successful
-      this.props.history.push("/welcome");
-    } catch (error){
-      //check if error has a message property, if not add one.
-      let err = null;
-      !error.message ? err= {"message": error } : err = error;
-      //set form error as a cognito error
-      this.setState({
-        errors: {
-          ...this.state.errors,
-          cognito: err
-        }
-      });
+      try {
+        const signUpResponse = await Auth.signUp({
+          username,
+          password,
+          attributes: {
+            email: email
+          }
+        });
+        console.log(signUpResponse);
+        //redirect to Welcome page if registration is successful
+        this.props.history.push("/welcome");
+      } catch (error) {
+        //check if error has a message property, if not add one.
+        let err = null;
+        !error.message ? (err = { message: error }) : (err = error);
+        //set form error as a cognito error
+        this.setState({
+          errors: {
+            ...this.state.errors,
+            cognito: err
+          }
+        });
+      }
     }
-  }
-
   };
 
   onInputChange = event => {
@@ -75,7 +73,7 @@ class Register extends Component {
       [event.target.id]: event.target.value
     });
     document.getElementById(event.target.id).classList.remove("is-danger");
-  }
+  };
 
   render() {
     return (
@@ -86,8 +84,8 @@ class Register extends Component {
           <form onSubmit={this.handleSubmit}>
             <div className="field">
               <p className="control has-icons-left">
-                <input 
-                  className="input" 
+                <input
+                  className="input"
                   type="text"
                   id="username"
                   placeholder="Enter username"
@@ -101,8 +99,8 @@ class Register extends Component {
             </div>
             <div className="field">
               <p className="control has-icons-left">
-                <input 
-                  className="input" 
+                <input
+                  className="input"
                   type="email"
                   id="email"
                   placeholder="Enter email"
@@ -116,8 +114,8 @@ class Register extends Component {
             </div>
             <div className="field">
               <p className="control has-icons-left">
-                <input 
-                  className="input" 
+                <input
+                  className="input"
                   type="password"
                   id="password"
                   placeholder="Password"
@@ -131,8 +129,8 @@ class Register extends Component {
             </div>
             <div className="field">
               <p className="control has-icons-left">
-                <input 
-                  className="input" 
+                <input
+                  className="input"
                   type="password"
                   id="confirmpassword"
                   placeholder="Confirm password"
@@ -151,7 +149,7 @@ class Register extends Component {
             </div>
             <div className="field">
               <p className="control">
-                <button className="button is-success">Register</button>
+                <button className="button is-danger">Register</button>
               </p>
             </div>
           </form>
@@ -161,4 +159,3 @@ class Register extends Component {
   }
 }
 export default Register;
-

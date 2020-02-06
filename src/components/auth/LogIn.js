@@ -34,25 +34,28 @@ class LogIn extends Component {
         errors: { ...this.state.errors, ...error }
       });
     } else {
-    //Integrate Cognito here on valid form submission
-    try {
-      const user = await Auth.signIn(this.state.username, this.state.password);
-      console.log(user);
-      this.props.auth.authenticateUser(true);
-      this.props.auth.setAuthUser(user);
-      this.props.history.push("/");
-    } catch (error) {
-      let err = null;
-      !error.message ? (err = { message: error }) : (err = error);
+      //Integrate Cognito here on valid form submission
+      try {
+        const user = await Auth.signIn(
+          this.state.username,
+          this.state.password
+        );
+        console.log(user);
+        this.props.auth.authenticateUser(true);
+        this.props.auth.setAuthUser(user);
+        this.props.history.push("/products");
+      } catch (error) {
+        let err = null;
+        !error.message ? (err = { message: error }) : (err = error);
 
-      this.setState({
-        errors: {
-          ...this.state.errors,
-          cognito: err
-        }
-      });
+        this.setState({
+          errors: {
+            ...this.state.errors,
+            cognito: err
+          }
+        });
+      }
     }
-  }
   };
 
   onInputChange = event => {
@@ -66,7 +69,7 @@ class LogIn extends Component {
     return (
       <section className="section auth">
         <div className="container">
-          <h1>Log in</h1>
+          <h1>Login</h1>
           <FormErrors formerrors={this.state.errors} />
 
           <form onSubmit={this.handleSubmit}>
@@ -107,7 +110,7 @@ class LogIn extends Component {
             </div>
             <div className="field">
               <p className="control">
-                <button className="button is-success">Login</button>
+                <button className="button is-danger">Login</button>
               </p>
             </div>
           </form>
@@ -118,4 +121,3 @@ class LogIn extends Component {
 }
 
 export default LogIn;
-

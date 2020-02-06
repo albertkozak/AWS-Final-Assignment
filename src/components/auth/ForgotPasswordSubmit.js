@@ -5,10 +5,10 @@ import { Auth } from "aws-amplify";
 
 class ForgotPasswordSubmit extends Component {
   state = {
-    verificationcode:"",
+    verificationcode: "",
     email: "",
-    password:"",
-    confirmpassword:"",
+    password: "",
+    confirmpassword: "",
     errors: {
       blankfield: false,
       matchedpassword: false,
@@ -38,24 +38,26 @@ class ForgotPasswordSubmit extends Component {
         errors: { ...this.state.errors, ...error }
       });
     } else {
+      //Integrate Cognito here on valid form submission
+      try {
+        await Auth.forgotPasswordSubmit(
+          this.state.email,
+          this.state.verificationcode,
+          this.state.password
+        );
+        this.props.history.push("/changepasswordconfirmation");
+      } catch (error) {
+        let err = null;
+        !error.message ? (err = { message: error }) : (err = error);
 
-    
-    //Integrate Cognito here on valid form submission
-    try {
-      await Auth.forgotPasswordSubmit(this.state.email, this.state.verificationcode, this.state.password);
-      this.props.history.push("/changepasswordconfirmation");
-    } catch (error) {
-      let err = null;
-      !error.message ? (err = { message: error }) : (err = error);
-
-      this.setState({
-        errors: {
-          ...this.state.errors,
-          cognito: err
-        }
-      });
+        this.setState({
+          errors: {
+            ...this.state.errors,
+            cognito: err
+          }
+        });
+      }
     }
-}
   };
 
   onInputChange = event => {
@@ -105,8 +107,8 @@ class ForgotPasswordSubmit extends Component {
             </div>
             <div className="field">
               <p className="control has-icons-left">
-                <input 
-                  className="input" 
+                <input
+                  className="input"
                   type="password"
                   id="password"
                   placeholder="Password"
@@ -120,8 +122,8 @@ class ForgotPasswordSubmit extends Component {
             </div>
             <div className="field">
               <p className="control has-icons-left">
-                <input 
-                  className="input" 
+                <input
+                  className="input"
                   type="password"
                   id="confirmpassword"
                   placeholder="Confirm password"
@@ -135,7 +137,7 @@ class ForgotPasswordSubmit extends Component {
             </div>
             <div className="field">
               <p className="control">
-                <button className="button is-success">Change Password</button>
+                <button className="button is-dark">Change Password</button>
               </p>
             </div>
           </form>
@@ -146,4 +148,3 @@ class ForgotPasswordSubmit extends Component {
 }
 
 export default ForgotPasswordSubmit;
-

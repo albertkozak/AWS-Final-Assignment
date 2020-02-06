@@ -20,20 +20,22 @@ class Products extends React.Component {
     return (
       <div>
         <h1>Products</h1>
-        {this.state.products.map(product => {
-          return (
-            <div key={product.id}>
-              <br></br>
-              <h1>
-                <b>{product.title}</b>
-              </h1>
-              <p>
-                <i>{product.description}</i>
-              </p>
-              <img src={product.imageURL} />
-            </div>
-          );
-        })}
+        <div className="glasses">
+          {this.state.products.map(product => {
+            return (
+              <div key={product.id} className="item">
+                <br></br>
+                <h2>
+                  <b>{product.title}</b>
+                </h2>
+                <p>
+                  <i>{product.description}</i>
+                </p>
+                <img src={product.imageURL} />
+              </div>
+            );
+          })}
+        </div>
       </div>
     );
   }
