@@ -2,7 +2,7 @@
 
 ## BCIT - SSD
 
-**Built with a React front-end fetching data via AWS API Gateway. Data is stored in AWS RDS DB (MySQL). Images stored in AWS S3 Bucket.**
+**This app using authentication through Amazon Cognito including email verification. Built with a React front-end fetching data via AWS API Gateway through a Lambda function. Data is stored in AWS RDS DB(MySQL) and images are stored within an AWS S3 Bucket.**
 
 **Instructions:**
 * Read below for build instructions
